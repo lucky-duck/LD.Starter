@@ -1,0 +1,33 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions", "ie 10"]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    ["@babel/plugin-proposal-class-properties"],
+    [
+      "@babel/plugin-proposal-object-rest-spread",
+      {
+        "useBuiltIns": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./src/media/js"],
+        "alias": {
+          "classes": "./src/media/js/classes",
+          "helpers": "./src/media/js/helpers",
+          "modules": "./src/media/js/modules",
+          "utils": "./src/media/js/utils"
+        }
+      }
+    ]
+  ]
+}

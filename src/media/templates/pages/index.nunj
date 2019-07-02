@@ -1,0 +1,7 @@
+{% extends "../ext/base.nunj" %}
+
+{% block title %}Home{{ super() }}{% endblock title %}
+
+{% block content %}
+  <h1>Home page</h1>
+{% endblock content %}
