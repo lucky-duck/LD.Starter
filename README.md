@@ -68,11 +68,11 @@ someData: [
 ]
 ```
 
-then you can get it the following way inside Nunjucks templates: 
+then you can get it the following way inside Nunjucks templates:
 
 ```
 <p>Some title: {{ someData[0].title }}</p>
-``` 
+```
 
 The page templates that should be compiled to HTML files (and which will be inside the `build/` directory) have to be kept inside the `src/media/templates/pages/` directory.
 
@@ -80,7 +80,105 @@ Custom Nunjucks filters, marcos, functions put in the corresponding files inside
 
 To use Nunjucks more effectively, please, read its [documentation](https://mozilla.github.io/nunjucks/templating.html).
 
-Also, don't forget to add syntax highlighting for you code editor. If your editor doesn't support Nunjucks syntax, you can use syntax highlighting for Twig template engine instead. Just set up opening .nunj files with Twig syntax highlighting for that.    
+Also, don't forget to add syntax highlighting for you code editor. If your editor doesn't support Nunjucks syntax, you can use syntax highlighting for Twig template engine instead. Just set up opening .nunj files with Twig syntax highlighting for that.
+
+## Webpack Hot Module Replacement
+
+LD.Starter has a support for [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement/).
+
+<b>Important!</b> For correct work of HMR you need to handle the side-effects in your JS code.
+
+For example, if you have the code that adds a click event handler:
+
+`document.body.addEventListener('click', this.someMethod);`
+
+then you need to add the following code in order to make Webpack handle this side-effect correctly on module replacement:
+
+```
+// Deleting the event handler so that it wouldn't be added twice  after you changed your code
+if (module.hot) {
+	module.hot.dispose(() => {
+		document.body.removeEventListener('click', this.someMethod);
+	});
+}
+```
+
+In the same manner you have to handle all side-effects. For example for DOM mutations:
+
+```
+var sideEffectNode = document.createElement("div");
+sideEffectNode.textContent = "Side Effect";
+document.body.appendChild(sideEffectNode);
+```
+
+And now we're adding this code on dispose action:
+
+```
+// Removing the <div> element, so that it wouldn't be added twice after module replacement.
+if (module.hot) {
+  module.hot.dispose(function() {
+    sideEffectNode.parentNode.removeChild(sideEffectNode);
+  });
+}
+```
+
+## The SVG sprite
+
+It is possible to automatically keep your SVG files for the project inside a single SVG sprite with the [gulp-svgstore](https://github.com/w0rm/gulp-svgstore) plugin. So that it's better to add SVG files to the project in the following way:
+
+```
+<svg><use xlink:href="#icon-some-vector-image"></use></svg>
+```
+
+Keep in mind that, in doing so, the SVG file `some-vector-image.svg` should located in the `src/media/svg` directory. You can also set, for example, `fill` or `stroke` to this element on the page, provided that these attributes are not set inside the SVG file.
+
+## The sprite file for raster images
+
+You can use the following mixin in SASS code for making the raster sprite:
+
+```
++s('some-image')
+```
+
+For retina images, you can use the `sr` mixin. Please, keep in mind that you need to have two images in this case `some-image.png` and `some-image@2x.png`:
+
+```
++sr('some-image')
+```
+
+The images should be kept inside the `src/media/img/sprites` in `png` format.
+
+## Inlining images or SVG into HTML or CSS
+
+<b>Attention!</b> The files, which should be inlined, have to seat in the `src/media/img/inline` directory.
+
+### В SASS
+
+The `postcss-assets` plugin allows to inline images into CSS code in Base64 encoding and as is for SVG files:
+
+```
+background: inline('some-image.png')
+```
+
+The plugin also can insert an image sizes:
+
+```
+width: width('some-image.png')
+```
+
+```
+height: height('some-image.png')
+```
+
+```
+background-size: size('some-image.png')
+```
+
+### Inside Nunjucks templates
+
+```
+<img src="{% inline 'some-image.png' %}" alt="Some image" />
+```
 
 ## Useful links
 
