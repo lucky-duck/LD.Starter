@@ -1,4 +1,4 @@
-export function Component() {
+export function StatefulComponent() {
   this.onInit();
   if (module.hot) {
     module.hot.dispose(() => {
@@ -7,13 +7,21 @@ export function Component() {
   }
 }
 
-Component.prototype.setState = function(stateToMerge) {
-  const prevState = {
-    ...this.state,
-  };
-  this.state = {
-    ...this.state,
-    ...stateToMerge,
-  };
-  this.onStateUpdate(prevState);
+StatefulComponent.prototype = {
+  onInit() {},
+
+  onStateUpdate() {},
+
+  onDestroy() {},
+
+  setState(stateToMerge) {
+    const prevState = {
+      ...this.state,
+    };
+    this.state = {
+      ...this.state,
+      ...stateToMerge,
+    };
+    this.onStateUpdate(prevState);
+  },
 };
