@@ -16,7 +16,7 @@ or with `npm` (slower):
 npm install
 ```
 
-#### 2. Run Gulp for development:
+#### 2. Run the project for development:
 
 ```
 yarn start
