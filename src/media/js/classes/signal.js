@@ -1,19 +1,13 @@
-// Callback is equal to Signal
 function Signal() {
   this.handlers = [];
-
-  const self = this;
-  this.callShim = function() {
-    self.call.apply(self, arguments);
-  };
 }
 
 Signal.prototype = {
-  _throwError: function() {
-    throw new TypeError('Callback handler must be function!');
+  _throwError() {
+    throw new Error('Callback handler must be function!');
   },
 
-  add: function(handler, context) {
+  add(handler, context) {
     if (typeof handler !== 'function') {
       this._throwError();
       return;
@@ -22,7 +16,7 @@ Signal.prototype = {
     return handler;
   },
 
-  remove: function(handler) {
+  remove(handler) {
     if (typeof handler !== 'function') {
       this._throwError();
       return;
@@ -36,7 +30,7 @@ Signal.prototype = {
     }
   },
 
-  call: function() {
+  call() {
     const totalHandlers = this.handlers.length;
     for (let k = 0; k < totalHandlers; k++) {
       const handlerData = this.handlers[k];
@@ -44,15 +38,12 @@ Signal.prototype = {
     }
   },
 
-  delayedCall: function(delay = 16) {
-    const self = this;
-    delay = delay || 100;
-
+  delayedCall(delay = 100) {
     const args = Array.prototype.slice.call(arguments);
     args.shift();
 
-    setTimeout(function() {
-      self.call.apply(self, args);
+    setTimeout(() => {
+      this.call.apply(this, args);
     }, delay);
   },
 };
