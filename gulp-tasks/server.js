@@ -13,41 +13,41 @@ const bundler = webpack(webpackConfig);
 let watchFiles = [PATHS.build.styles + '*.css', PATHS.build.html + '/*.html'];
 
 if (!hmrEnabled) {
-	watchFiles.push(PATHS.build.scripts + '*.js');
+  watchFiles.push(PATHS.build.scripts + '*.js');
 }
 
 export default function server() {
-	browserSync.init({
-		server: {
-			baseDir: './build',
-			middleware: hmrEnabled
-				? [
-						webpackDevMiddleware(bundler, {
-							publicPath: webpackConfig.output.publicPath,
-							logLevel: 'error',
-							reporter: (middlewareOptions, options) => {
-								const { state, stats } = options;
-								if (state) {
-									if (stats.hasErrors()) {
-										notifier.notify({
-											title: 'Webpack compilation error',
-											message: stats.compilation.errors[0].error.toString(),
-										});
-									}
-								}
-							},
-						}),
-						webpackHotMiddleware(bundler, {
-							log: false,
-						}),
-				  ]
-				: [],
-		},
-		injectchanges: true,
-		notify: false,
-		open: false,
-		port: 9000,
-		logPrefix: 'Street',
-		files: watchFiles,
-	});
+  browserSync.init({
+    server: {
+      baseDir: './build',
+      middleware: hmrEnabled
+        ? [
+            webpackDevMiddleware(bundler, {
+              publicPath: webpackConfig.output.publicPath,
+              logLevel: 'error',
+              reporter: (middlewareOptions, options) => {
+                const { state, stats } = options;
+                if (state) {
+                  if (stats.hasErrors()) {
+                    notifier.notify({
+                      title: 'Webpack compilation error',
+                      message: stats.compilation.errors[0].error.toString(),
+                    });
+                  }
+                }
+              },
+            }),
+            webpackHotMiddleware(bundler, {
+              log: false,
+            }),
+          ]
+        : [],
+    },
+    injectchanges: true,
+    notify: false,
+    open: false,
+    port: 9000,
+    logPrefix: 'LD.Starter',
+    files: watchFiles,
+  });
 }
