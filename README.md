@@ -50,15 +50,23 @@ yarn build
 yarn zip
 ```
 
+## Project Structure
+
+It's not mandatory but considered effective for many reasons to decompose the UI into separate, less coupled components.
+
+Create components at least for the parts of the UI that appear in multiple places of your project. It can be buttons, common page sections, widgets, sliders and so on.
+
+It is recommended that you will keep your components inside the `src/media/components/` folder. This starter kit allows you to keep your markup, styles, and JavaScript code for a component in a one folder and then to use them in multiple places. Please, see the `src/media/components/` folder for examples. Notice how different types of components are arranged. Also, It is not absolutely mandatory to include Nunjucks or JS code for a component if you feel that it doesn't make too much sense. For example, when the markup is quite simple or when a component has not JS logic.
+
 ## Nunjucks HTML template engine
 
-[Nunjucks](https://mozilla.github.io/nunjucks/) is a powerful HTML template engine with a syntax similar to jinja2. Nunjucks alleviates writing highly-maintainable HTML code.
+[Nunjucks](https://mozilla.github.io/nunjucks/) is a powerful HTML template engine with a syntax very similar to jinja2. Nunjucks alleviates writing highly-maintainable HTML code.
 
 Nunjucks templates seat in `src/media/templates/` folder.
 
-Keep the data that can be used in multiple places inside `global-data.json` file. This file is located in the root directory.
+Keep the data that can be used in multiple places inside the `global-data.json` file. This file is located in the root directory.
 
-For example, if you have some data in `global-data.json`:
+For example, if you have some data in the `global-data.json`:
 
 ```
 someData: [

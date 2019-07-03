@@ -7,4 +7,11 @@
 @import 'layout';
 @import 'extends';
 
-@import "./pages/home";
+/***=== COMPONENTS ===***/
+@import '../components/button/button';
+@import '../components/title/title';
+@import '../components/container/container';
+@import '../components/some-widget/some-widget';
+
+/***=== PAGES ===***/
+@import './pages/home';

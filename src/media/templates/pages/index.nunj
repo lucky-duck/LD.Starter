@@ -1,7 +1,19 @@
 {% extends "../ext/base.nunj" %}
 
+{% from "../../components/button/button.nunj" import button %}
+
 {% block title %}Home{{ super() }}{% endblock title %}
 
 {% block content %}
-  <h1>Home page</h1>
+  <div class="page-home page">
+    <div class="container">
+      <h1 class="page-home__title title">Home page</h1>
+      {{ button({
+        className: 'page-home__button',
+        children: 'Buy something',
+        chevronRight: true
+      }) }}
+      {% include "../../components/some-widget/some-widget.nunj" %}
+    </div>
+  </div>
 {% endblock content %}
