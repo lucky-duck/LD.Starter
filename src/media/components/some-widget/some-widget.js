@@ -29,10 +29,10 @@ class SomeWidget {
 
   update() {
     this.itemNodes.forEach(node => {
-      node.style.opacity = '0';
+      node.style.opacity = 0;
     });
     const currentItemNode = this.itemNodes[this.currentIndex];
-    currentItemNode.style.opacity = '1';
+    currentItemNode.style.opacity = 1;
   }
 }
 
