@@ -2,8 +2,8 @@ import gulp from 'gulp';
 import PATHS from '../paths';
 import { PRODUCTION } from '../config';
 
-var replace = require('gulp-replace');
-var fs = require('fs');
+const replace = require('gulp-replace');
+const fs = require('fs');
 const md5File = require('md5-file');
 
 const buildPath = PATHS.build.html.replace(/\/$/, '');
@@ -15,12 +15,13 @@ export default function assetsVersion() {
     .src(buildPath + '/**/*.html')
     .pipe(
       replace(/([\w\/]+\.[js|css]+\?)hash/gi, function(match) {
-        var assetPath = __dirname;
+        let assetPath = __dirname;
 
         assetPath = assetPath.replace('gulp-tasks', buildPath);
 
-        var assetPathHasSlash = assetPath.charAt(assetPath.length - 1) === '/';
-        var matchHasSlash = match.charAt(0) === '/';
+        const assetPathHasSlash =
+          assetPath.charAt(assetPath.length - 1) === '/';
+        const matchHasSlash = match.charAt(0) === '/';
 
         if (assetPathHasSlash && matchHasSlash) {
           assetPath = assetPath + match.substring(1);
@@ -31,8 +32,8 @@ export default function assetsVersion() {
         }
         assetPath = assetPath.substring(0, assetPath.indexOf('?'));
 
-        var hash = '';
-        var isRealHash;
+        let hash = '';
+        let isRealHash;
         if (fs.existsSync(assetPath)) {
           hash = md5File.sync(assetPath);
           isRealHash = true;
@@ -48,7 +49,7 @@ export default function assetsVersion() {
           );
         }
 
-        var res = match.replace('hash', '');
+        let res = match.replace('hash', '');
         res = PRODUCTION ? res + hash : res.replace('?', '');
         return res;
       })

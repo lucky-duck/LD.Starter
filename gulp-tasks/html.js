@@ -15,48 +15,48 @@ import filters from '../src/media/templates/lib/filters.js';
 import functions from '../src/media/templates/lib/functions.js';
 
 export default function html() {
-	delete require.cache[require.resolve('../global-data.json')];
-	const globalData = require('../global-data.json');
+  delete require.cache[require.resolve('../global-data.json')];
+  const globalData = require('../global-data.json');
 
-	return gulp
-		.src(PATHS.src.nunj)
-		.pipe(
-			plumber({
-				errorHandler: function(err) {
-					log.error(colors.red(err.message));
-					notifier.notify({
-						title: 'Nunjucks compilation error',
-						message: err.message,
-					});
-				},
-			})
-		)
-		.pipe(
-			nunjucksRender({
-				src: PATHS.src.templates,
-				data: Object.assign(
-					{
-						DEVELOP: !PRODUCTION,
-					},
-					globalData
-				),
-				extensions,
-				filters,
-				functions,
-				trimBlocks: true,
-				lstripBlocks: true,
-				autoescape: false,
-			})
-		)
-		.pipe(
-			gulpif(
-				PRODUCTION,
-				beautify({
-					max_preserve_newlines: 1,
-					wrap_line_length: 0,
-				})
-			)
-		)
-		.pipe(gulpif(PRODUCTION, minifyInline()))
-		.pipe(gulp.dest(PATHS.build.html));
+  return gulp
+    .src(PATHS.src.nunj)
+    .pipe(
+      plumber({
+        errorHandler: function(err) {
+          log.error(colors.red(err.message));
+          notifier.notify({
+            title: 'Nunjucks compilation error',
+            message: err.message,
+          });
+        },
+      })
+    )
+    .pipe(
+      nunjucksRender({
+        src: PATHS.src.templates,
+        data: Object.assign(
+          {
+            DEVELOP: !PRODUCTION,
+          },
+          globalData
+        ),
+        extensions,
+        filters,
+        functions,
+        trimBlocks: true,
+        lstripBlocks: true,
+        autoescape: false,
+      })
+    )
+    .pipe(
+      gulpif(
+        PRODUCTION,
+        beautify({
+          max_preserve_newlines: 1,
+          wrap_line_length: 0,
+        })
+      )
+    )
+    .pipe(gulpif(PRODUCTION, minifyInline()))
+    .pipe(gulp.dest(PATHS.build.html));
 }
