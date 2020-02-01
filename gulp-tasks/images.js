@@ -23,9 +23,10 @@ export default function images() {
             // imagemin.jpegtran({
             //   progressive: true,
             // }),
-            // imageminMozjpeg({
-            //   quality: 80,
-            // }),
+            imageminMozjpeg({
+              quality: 80,
+              progressive: true,
+            }),
             imagemin.svgo({ plugins: [{ removeViewBox: false }] }),
           ],
           {

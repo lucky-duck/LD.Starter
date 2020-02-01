@@ -8,4 +8,10 @@
   &__button {
     margin-bottom: 60px;
   }
+
+  &__inline-image-example {
+    background-image: inline('../images/rubber-duck.png');
+    width: 150px;
+    height: 116px;
+  }
 }
