@@ -154,11 +154,11 @@ For retina images, you can use the `sr` mixin. Please, keep in mind that you nee
 +sr('some-image')
 ```
 
-The images should be kept inside the `src/media/img/sprites` in `png` format.
+The images should be kept inside the `src/media/images/sprites` in `png` format.
 
 ## Inlining images or SVG into HTML or CSS
 
-<b>Attention!</b> The files, which should be inlined, have to seat in the `src/media/img/inline` directory.
+<b>Attention!</b> The files, which should be inlined, have to seat in the `src/media/images/inline` directory.
 
 ### В SASS
 
