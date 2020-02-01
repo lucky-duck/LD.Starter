@@ -6,7 +6,7 @@
     "jquery": true,
     "commonjs": true
   },
-  "extends": ["eslint:recommended", "prettier", "gsap"],
+  "extends": ["eslint:recommended", "gsap"],
   "globals": {
     "cy": true
   },
@@ -17,5 +17,5 @@
     "no-console": "off",
     "no-unused-vars": "warn"
   },
-  "plugins": ["prettier"]
+  "plugins": []
 }
