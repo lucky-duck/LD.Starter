@@ -59,9 +59,9 @@
     "prettier": "^1.15.3",
     "raw-loader": "^0.5.1",
     "vinyl-named": "^1.1.0",
-    "webpack": "^4.27.1",
-    "webpack-dev-middleware": "^3.4.0",
-    "webpack-hot-middleware": "^2.24.3",
+    "webpack": "^4.41.5",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
     "yargs": "^3.32.0"
   },
   "devDependencies": {
