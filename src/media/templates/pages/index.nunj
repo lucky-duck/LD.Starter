@@ -14,6 +14,10 @@
         chevronRight: true
       }) }}
       {% include "../../components/some-widget/some-widget.nunj" %}
+      <section style="margin-top: 60px">
+        <h3>Image example</h3>
+        <img src="../media/images/woman.jpg" alt="Woman">
+      </section>
     </div>
   </div>
 {% endblock content %}
