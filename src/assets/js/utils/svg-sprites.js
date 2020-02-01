@@ -8,6 +8,6 @@
     div.style.display = 'none';
     script.parentNode.insertBefore(div, script);
   };
-  xhr.open('get', 'media/svg/sprite.svg', true);
+  xhr.open('get', 'assets/svg/sprite.svg', true);
   xhr.send();
 })(document);

@@ -16,7 +16,7 @@
       {% include "../../components/some-widget/some-widget.nunj" %}
       <section style="margin-top: 60px;">
         <h3 style="margin-bottom: 20px;">Image example</h3>
-        <img src="../media/images/woman.jpg" alt="Woman">
+        <img src="/assets/images/woman.jpg" alt="Woman">
       </section>
       <section style="margin-top: 60px;">
         <h3 style="margin-bottom: 20px;">Inline image example</h3>

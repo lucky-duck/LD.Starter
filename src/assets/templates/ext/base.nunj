@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
   {% block stylesheets %}
-    <link rel="stylesheet" href="media/css/screen.css?hash"/>
+    <link rel="stylesheet" href="/assets/css/screen.css?hash"/>
   {% endblock stylesheets %}
 </head>
 <body>
@@ -15,7 +15,7 @@
 {% endblock content %}
 
 {% block scripts %}
-  <script src="media/js/bundle.js?hash"></script>
+  <script src="/assets/js/bundle.js?hash"></script>
 {% endblock scripts %}
 </body>
 </html>

@@ -10,9 +10,9 @@ import colors from 'ansi-colors';
 
 import { PRODUCTION } from '../config';
 import PATHS from '../paths';
-import * as extensions from '../src/media/templates/lib/extensions.js';
-import filters from '../src/media/templates/lib/filters.js';
-import functions from '../src/media/templates/lib/functions.js';
+import * as extensions from '../src/assets/templates/lib/extensions.js';
+import filters from '../src/assets/templates/lib/filters.js';
+import functions from '../src/assets/templates/lib/functions.js';
 
 export default function html() {
   delete require.cache[require.resolve('../global-data.json')];
