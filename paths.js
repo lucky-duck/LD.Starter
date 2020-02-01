@@ -13,7 +13,7 @@ export default {
     templates: './src/assets',
     nunj: 'src/assets/templates/pages/**/*.nunj',
     scripts: 'src/assets/js/index.js',
-    styles: 'src/assets/sass/screen.scss',
+    styles: 'src/assets/sass/styles.scss',
     images: 'src/assets/images/**/*.*',
     imagesInline: 'src/assets/images/inline/',
     fonts: 'src/assets/fonts/**/*.*',
