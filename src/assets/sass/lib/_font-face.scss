@@ -54,8 +54,21 @@
 // Font Face
 // =============================================================================
 
-@mixin font-face($name, $path, $weight: null, $style: null, $exts: woff2 woff) {
+@mixin font-face(
+  $name,
+  $path,
+  $weight: null,
+  $style: null,
+  $exts: woff2 woff,
+  $local: null
+) {
   $src: null;
+
+  @if $local {
+    @each $item in $local {
+      $src: append($src, local($item));
+    }
+  }
 
   $extmods: (
     eot: '?',
