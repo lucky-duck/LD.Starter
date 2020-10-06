@@ -27,19 +27,19 @@ fieldset legend
 ul, li
   list-style-type: none
 
-img
-  vertical-align: top
-
 table
   border: 0
   border-collapse: collapse
-  
+
   td
     padding: 0
     vertical-align: top
 
 input, select, textarea
   +box
+
+input[type=number]
+  -moz-appearance: textfield
 
 input[type=number]::-webkit-inner-spin-button
   -webkit-appearance: none
@@ -49,8 +49,8 @@ input[type=number]::-webkit-outer-spin-button
   -webkit-appearance: none
   margin: 0
 
-input[type=number]
-  -moz-appearance: textfield
+input[type=search]
+  -webkit-appearance: textfield
 
 input[type=search]::-webkit-search-decoration,
 input[type=search]::-webkit-search-cancel-button,
@@ -58,8 +58,6 @@ input[type=search]::-webkit-search-results-button,
 input[type=search]::-webkit-search-results-decoration
   display: none
 
-input[type=search]
-  -webkit-appearance: textfield
 
 ::selection
   background: #33378f
@@ -106,7 +104,7 @@ button
 .wrapper
   overflow: hidden
   min-height: 100%
-  
+
 img
   transition: opacity 0.35s ease-out
 
