@@ -87,7 +87,7 @@ export const config = {
     },
   },
   plugins: PRODUCTION ? [] : [new webpack.HotModuleReplacementPlugin()],
-  devtool: PRODUCTION ? false : '#eval',
+  devtool: PRODUCTION ? undefined : 'eval',
   mode: PRODUCTION ? 'production' : 'development',
   optimization: {
     minimize: PRODUCTION,
