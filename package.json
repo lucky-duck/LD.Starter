@@ -6,9 +6,15 @@
     "start": "gulp",
     "build": "cross-env NODE_ENV=production gulp production",
     "zip": "cross-env NODE_ENV=production gulp zip",
+    "format": "pretty-quick --staged",
     "lint:css": "stylelint \"src/**/*.{scss,sass}\"",
     "lint:js": "eslint --max-warnings 0 \"src/**/*.{jsx,js}\"",
-    "precommit": "pretty-quick --staged && npm run lint:css && npm run lint:js"
+    "validate": "npm-run-all --parallel format lint:css lint:js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run validate"
+    }
   },
   "dependencies": {
     "@babel/core": "^7.2.0",
@@ -64,7 +70,8 @@
     "eslint": "^7.12.0",
     "eslint-config-gsap": "^3.0.0",
     "eslint-loader": "^4.0.2",
-    "husky": "^1.2.0",
+    "husky": "^4.3.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.1.2",
     "pretty-quick": "^1.8.0",
     "stylelint": "^13.7.2",
