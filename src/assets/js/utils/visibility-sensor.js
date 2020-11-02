@@ -5,19 +5,11 @@ class VisibilitySensor {
     this.observer = new IntersectionObserver(this.update, {
       rootMargin: '0px 0px -30% 0px',
     });
-
-    if (module.hot) {
-      module.hot.dispose(() => {
-        this.added.forEach(v => {
-          this.observer.unobserve(v.node);
-        });
-      });
-    }
   }
 
-  update = entries => {
-    entries.forEach(entry => {
-      const cb = this.added.find(v => {
+  update = (entries) => {
+    entries.forEach((entry) => {
+      const cb = this.added.find((v) => {
         return v.node === entry.target;
       }).cb;
       cb({ isVisible: entry.isIntersecting });
@@ -31,7 +23,7 @@ class VisibilitySensor {
 
   unobserve(node) {
     this.observer.unobserve(node);
-    this.added = this.added.filter(v => v.node !== node);
+    this.added = this.added.filter((v) => v.node !== node);
   }
 }
 

@@ -2,20 +2,16 @@
 import webpack from 'webpack';
 import path from 'path';
 
-import { PRODUCTION, hmrEnabled } from './config';
+import { PRODUCTION } from './config';
 import paths from './paths';
 
 const entryPoints = {
   bundle: path.resolve(__dirname, paths.src.scripts),
 };
 
-const hotMiddlewareString =
-  'webpack-hot-middleware/client?quiet=true&noInfo=true';
-
 export const config = {
   entry: Object.keys(entryPoints).reduce((acc, currentKey) => {
     acc[currentKey] = [entryPoints[currentKey]];
-    !PRODUCTION && hmrEnabled && acc[currentKey].push(hotMiddlewareString);
     return acc;
   }, {}),
   output: {
@@ -86,13 +82,12 @@ export const config = {
       ),
     },
   },
-  plugins: PRODUCTION ? [] : [new webpack.HotModuleReplacementPlugin()],
   devtool: PRODUCTION ? undefined : 'eval',
   mode: PRODUCTION ? 'production' : 'development',
   optimization: {
     minimize: PRODUCTION,
   },
-  watch: !PRODUCTION && !hmrEnabled,
+  watch: !PRODUCTION,
 };
 
 export default config;

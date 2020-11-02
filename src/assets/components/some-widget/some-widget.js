@@ -10,15 +10,9 @@ class SomeWidget {
 
     this.update();
 
-    const timeoutId = setInterval(() => {
+    setInterval(() => {
       this.next();
     }, this.timeout);
-
-    if (module.hot) {
-      module.hot.dispose(() => {
-        clearInterval(timeoutId);
-      });
-    }
   }
 
   next() {

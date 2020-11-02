@@ -92,43 +92,7 @@ Also, don't forget to add syntax highlighting for you code editor. If your edito
 
 ## Webpack Hot Module Replacement
 
-LD.Starter has a support for [Webpack HMR](https://webpack.js.org/concepts/hot-module-replacement/).
-
-<b>Important!</b> For correct work of HMR you need to handle the side-effects in your JS code.
-
-For example, if you have the code that adds a click event handler:
-
-`document.body.addEventListener('click', this.someMethod);`
-
-then you need to add the following code in order to make Webpack handle this side-effect correctly on module replacement:
-
-```
-// Deleting the event handler so that it wouldn't be added twice  after you changed your code
-if (module.hot) {
-	module.hot.dispose(() => {
-		document.body.removeEventListener('click', this.someMethod);
-	});
-}
-```
-
-In the same manner you have to handle all side-effects. For example for DOM mutations:
-
-```
-var sideEffectNode = document.createElement("div");
-sideEffectNode.textContent = "Side Effect";
-document.body.appendChild(sideEffectNode);
-```
-
-And now we're adding this code on dispose action:
-
-```
-// Removing the <div> element, so that it wouldn't be added twice after module replacement.
-if (module.hot) {
-  module.hot.dispose(function() {
-    sideEffectNode.parentNode.removeChild(sideEffectNode);
-  });
-}
-```
+HMR was removed after Webpack v5 upgrade
 
 ## The SVG sprite
 
