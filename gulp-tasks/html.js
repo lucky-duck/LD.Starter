@@ -22,7 +22,7 @@ export default function html() {
     .src(PATHS.src.nunj)
     .pipe(
       plumber({
-        errorHandler: function(err) {
+        errorHandler: function (err) {
           log.error(colors.red(err.message));
           notifier.notify({
             title: 'Nunjucks compilation error',
@@ -54,6 +54,7 @@ export default function html() {
         beautify({
           max_preserve_newlines: 1,
           wrap_line_length: 0,
+          indent_size: 2,
         })
       )
     )
