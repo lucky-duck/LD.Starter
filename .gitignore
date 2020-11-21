@@ -1,10 +1,13 @@
 .DS_Store
+
 .idea
+*.sublime*
+
 node_modules
 bower_components
-build
 *.log
 .fuse_hidden*
+
+build
 build.zip
 temp/
-*.sublime*

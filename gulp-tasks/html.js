@@ -7,6 +7,8 @@ import minifyInline from 'gulp-minify-inline-scripts';
 import gulpif from 'gulp-if';
 import log from 'fancy-log';
 import colors from 'ansi-colors';
+import htmlValidator from 'gulp-w3c-html-validator';
+import through2 from 'through2';
 
 import { PRODUCTION } from '../config';
 import PATHS from '../paths';
@@ -25,7 +27,7 @@ export default function html() {
         errorHandler: function (err) {
           log.error(colors.red(err.message));
           notifier.notify({
-            title: 'Nunjucks compilation error',
+            title: 'Nunjucks Compilation Error',
             message: err.message,
           });
         },
@@ -46,6 +48,25 @@ export default function html() {
         trimBlocks: true,
         lstripBlocks: true,
         autoescape: false,
+      })
+    )
+    .pipe(htmlValidator({ skipWarnings: true }))
+    .pipe(
+      through2.obj((file, encoding, callback) => {
+        callback(null, file);
+        if (!file.w3cjs.success) {
+          const filename = file.history[0].split('/').slice(-1);
+          const errorTitle = 'HTML validation error(s) found';
+          if (PRODUCTION) {
+            throw new Error(errorTitle);
+          }
+          notifier.notify({
+            title: errorTitle,
+            message: file.w3cjs.messages
+              .map((v) => `${filename}: ${v.message}`)
+              .join('\n'),
+          });
+        }
       })
     )
     .pipe(

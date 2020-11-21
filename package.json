@@ -46,6 +46,7 @@
     "gulp-sass": "^4.1.0",
     "gulp-svgmin": "^3.0.0",
     "gulp-svgstore": "^7.0.1",
+    "gulp-w3c-html-validator": "^2.0.1",
     "gulp-zip": "^5.0.2",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.1",
@@ -57,6 +58,7 @@
     "postcss-assets": "^5.0.0",
     "postcss-sprites": "^4.2.1",
     "raw-loader": "^4.0.0",
+    "through2": "^4.0.2",
     "vinyl-named": "^1.1.0",
     "webpack": "^5.3.2",
     "yargs": "^16.1.0"
